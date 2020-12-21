@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content">
+                <h:messages> </h:messages>
+                <h:form id="edytujKonto" styleClass="center_content">
+                    #{msg['strona.edytuj.konto.label.login']}: <h:outputText id="login" value="${edycjaKontaPageBean.kontoDTO.login}" /><br />
+                    #{msg['strona.edytuj.konto.label.imie']}: <h:inputText id="imie" value="${edycjaKontaPageBean.kontoDTO.imie}"  size="50" /><br />
+                    #{msg['strona.edytuj.konto.label.nazwisko']}: <h:inputText id="nazwisko" value="${edycjaKontaPageBean.kontoDTO.nazwisko}"  size="50" /><br />
+                    #{msg['strona.edytuj.konto.label.email']}: <h:inputText id="email" value="#{edycjaKontaPageBean.kontoDTO.email}" size="50" />
+                    <h:commandButton value="#{msg['strona.form.akcja.zapisz']}" action="#{edycjaKontaPageBean.zapiszEdycjeKontaAction()}" />
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}" action="listaKontAktywnych" immediate="true"/>
+                </h:form>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

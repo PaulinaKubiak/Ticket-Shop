@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:messages></h:messages>
+                <h:form id="resetHasla2" styleClass="center_content">
+                    <h:panelGrid columns="2" styleClass="table">   
+                        #{msg['strona.rejestracja.konto.label.login']}*:
+                        <h:inputText id="login" required="true" value="${resetHaslaPageBean2.kontoDTO.login}" maxlength="20" size="80"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.login']}"/> <br />
+
+                        #{msg['strona.rejestracja.kontolabel.pytanie']}*:
+                        <h:inputText disabled="true" id="pytanie" value="${resetHaslaPageBean2.kontoDTO.pytanie}" size="80"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.pytanie']}"/> <br />
+
+                        #{msg['strona.rejestracja.konto.label.odpowiedz']}*:
+                        <h:inputSecret id="odpowiedz" value="${resetHaslaPageBean2.kontoDTO.odpowiedz}" required="true" size="80"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.odpowiedz']}"/> <br />
+
+                        #{msg['strona.rejestracja.konto.formularz.label.nowe.haslo']}*:
+                        <h:inputSecret id="newPassword"  required="true" maxlength="20" size="80" value="${resetHaslaPageBean2.kontoDTO.haslo}"
+                                       validatorMessage="#{msg['strona.rejestracja.konto.formularz.walidacja.haslo']}"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.haslo']}">
+                            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%]).{6,20})" /> </h:inputSecret><br />
+
+                        #{msg['strona.rejestracja.konto.formularz.label.nowe.haslo.powtorz']}*: 
+                        <h:inputSecret id="powtorzNoweHaslo" required="true" maxlength="20" size="80" value="${resetHaslaPageBean2.powtorzNoweHaslo}"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.powtorz.haslo']}"/> <br />
+
+                    </h:panelGrid>
+                    <h:commandButton value="#{msg['strona.reset.hasla.form.akcja.konto']}" action="${resetHaslaPageBean2.resetHaslaAction()}" />
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}"  action="main" immediate="true"/>
+                </h:form>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:messages></h:messages>
+                <h:form id="rejestracjaKoncertu" styleClass="center_content">
+                    <h1> ${msg['strona.akcja.rejestracja.koncertu']} </h1>
+                    <h:panelGrid columns="2" styleClass="table">     
+                        #{msg['strona.rejestracja.koncert.form.label.wykonawca']}*:
+                        <h:inputText id="wykonawca" value="${rejestracjaKoncertuPageBean.koncertDTO.wykonawca}" required="true" size="50" maxlength="200" 
+                                     requiredMessage="#{msg['strona.rejestracja.koncertu.pole.wykonaca']}"> </h:inputText><br />
+                        #{msg['strona.rejestracja.koncert.form.label.data']}*:
+                        <h:inputText id="data" value="${rejestracjaKoncertuPageBean.koncertDTO.data}" required="true" size="50" maxlength="64" 
+                                     requiredMessage="#{msg['strona.rejestracja.koncertu.pole.data']}">
+                            <f:convertDateTime type="date" pattern="yyyy-M-d HH:mm" /> </h:inputText> <br />
+                        #{msg['strona.rejestracja.koncert.form.label.miejsce']}*:
+                        <h:inputText id="miejsce" value="${rejestracjaKoncertuPageBean.koncertDTO.miejsce}" 
+                                     required="true" size="50" maxlength="60" requiredMessage="#{msg['strona.rejestracja.koncertu.pole.miejsce']}"/> <br />     
+                        #{msg['strona.rejestracja.koncert.form.label.pula.biletow']}*:
+                        <h:inputText id="pulaBiletow" value="${rejestracjaKoncertuPageBean.koncertDTO.pulaBiletow}" 
+                                     required="true" size="50" maxlength="60" requiredMessage="#{msg['strona.rejestracja.koncertu.pole.pula']}"/> <br /> 
+                        #{msg['strona.rejestracja.koncert.form.label.cena']}*:
+                        <h:inputText id="cena" value="${rejestracjaKoncertuPageBean.koncertDTO.cena}" 
+                                     required="true" size="50" maxlength="60" requiredMessage="#{msg['strona.rejestracja.koncertu.pole.cena']}"/> 
+                    </h:panelGrid>
+                    <h:commandButton value="#{msg['strona.rejestracja.koncert.akcja.rejestruj']}" action="${rejestracjaKoncertuPageBean.rejestracjaKoncertuAkcja()}" />
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}" action="main" immediate="true"/>
+                </h:form>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

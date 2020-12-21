@@ -1,0 +1,46 @@
+.header{
+    margin-top: 10px;
+    margin-left: 5%;
+    width: 90%;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+.menu{
+    margin-left: 5%;
+    width: 90%;
+    
+}
+.content-area{
+    margin-left: 5%;
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 0px;
+}
+
+.content{
+    /*width: 75%;*/
+    /*margin-left: 5%;*/
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    float: left;
+}
+/*.sidebar{
+    width: 24%;
+    min-height: 300px;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    float: right;
+}*/
+
+.footer{
+    margin-left: 5%;
+    width: 90%;
+    border: 1px solid black;;
+    text-align: center;
+    padding: 10px;
+}
+

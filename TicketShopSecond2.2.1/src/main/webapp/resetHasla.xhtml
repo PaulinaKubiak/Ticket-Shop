@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:messages></h:messages>
+                <h:form id="resetHasla" styleClass="center_content">
+                    #{msg['strona.rejestracja.konto.label.login']}*:
+                    <td><h:inputText id="login" required="true" value="${resetHaslaPageBean.kontoDTO.login}" maxlength="20" size="80"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.login']}"/></td>
+                    <h:commandButton value="#{msg['strona.reset.hasla.form.akcja.konto']}" action="${resetHaslaPageBean.wybierzKontoDoResetuHaslaAction()}" />
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}"  action="main" immediate="true"/>
+
+                </h:form>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

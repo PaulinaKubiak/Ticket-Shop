@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content">
+                #{msg['page.main.page.content.textLeftSide']}#{msg['page.main.template.title']}#{msg['page.main.page.content.textRightSide']}&nbsp;
+                <f:subview id="nieuwierzytelnionyWidok" rendered="#{empty request.remoteUser}">
+                    <br/>Jestem pusty!
+                </f:subview>
+                <f:subview id="uwierzytelnionyWidok" rendered="#{not empty request.remoteUser}">
+                    <br/>Jestem pełny! </f:subview>
+                <f:subview id="administratorWidok" rendered="#{request.isUserInRole('Administrator')}">
+                    <br/>Jestem administratorem!
+                </f:subview>
+                <f:subview id="pracownikWidok" rendered="#{request.isUserInRole('Pracownik')}">
+                    <br/>Jestem pracownikiem!</f:subview>
+                <f:subview id="klientWidok" rendered="#{request.isUserInRole('Klient')}">
+                    <br/>Jestem klientem!</f:subview>
+                <h4><h:messages  /></h4>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

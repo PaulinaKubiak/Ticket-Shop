@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">      
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="/css/style.css"/>
+        <h:outputScript name="/js/jquery.js"/>
+        <h:outputScript name="/js/bootstrap.min.js"/>
+        <title> #{msg['strona.main.template.tytul']}</title>
+    </h:head>
+
+    <h:body>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 header">
+                    <ui:insert name="header">
+                        <h1><a href="">Ticket Web Shop</a></h1>
+                    </ui:insert>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 menu">
+                    <ui:insert name="menu">
+                        <div class="row">
+                            <nav class="navbar navbar-inverse">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <!--                                        <a class="navbar-brand" href="#">Menu</a>
+                                                                                <a class="navbar-brand"></a>
+                                        -->                                    </div>
+
+                                    <div class="collapse navbar-collapse" id="myNavbar">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="stronaGlowna.xhtml">#{msg['strona.main.template.label.strona.glowna']}</a></li>
+
+
+                                            <f:subview id="klientWidok" rendered="#{request.isUserInRole('Klient')}">
+                                                <li><a> <span class="glyphicon glyphicon-user"></span>${applicationBean.myLogin}</a></li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['strona.main.template.label.klient']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="listaKoncertowKlient.xhtml">#{msg['strona.main.template.label.klient.lista.dostepnych.koncertow']}</a></li>
+                                                        <li><a href="listaKupionychBiletowKlient.xhtml">Lista kupionych biletów</a></li>
+                                                        <li><a href="edytujMojeKonto.xhtml">Edytuj konto</a></li>
+                                                        <li><a href="zmienMojeHaslo.xhtml">Zmienń moje hasło</a></li>
+                                                        <li><a href="wyloguj.xhtml">#{msg['strona.main.template.label.wyloguj']}</a></li> 
+                                                    </ul>
+                                                    <li><a href="wyloguj.xhtml">#{msg['strona.main.template.label.wyloguj']}</a></li>
+                                                </li>
+                                            </f:subview> 
+
+
+                                            <f:subview id="pracownikWidok" rendered="#{request.isUserInRole('Pracownik')}">
+                                                <li><a> <span class="glyphicon glyphicon-user"></span>${applicationBean.myLogin}</a></li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['strona.main.template.label.pracownik']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="rejestracjaKoncertu.xhtml">#{msg['strona.main.template.label.pracownik.rejestracja.nowego.koncertu']}</a></li>
+                                                        <li><a href="listaKoncertow.xhtml">#{msg['strona.main.template.label.pracownik.lista.dostepnych.koncertow']}</a></li>
+                                                        <li><a href="edytujMojeKonto.xhtml">Edytuj konto</a></li>
+<!--                                                        <li><a href="listaKupionychBiletow.xhtml">#{msg['strona.main.template.label.klient.lista.kupionych.biletow']}</a></li>-->
+                                                        <li><a href="listaKupionychBiletowNowa.xhtml">Lista kupionych biletów</a></li>
+                                                        <li><a href="zmienMojeHaslo.xhtml">Zmienń moje hasło</a></li>
+                                                        <li><a href="wyloguj.xhtml"><span class="glyphicon glyphicon-log-out"></span> #{msg['strona.main.template.label.wyloguj']}</a></li>
+                                                    </ul>
+                                                    <li><a href="wyloguj.xhtml">#{msg['strona.main.template.label.wyloguj']}</a></li>
+                                                </li>
+                                            </f:subview>
+
+
+                                            <f:subview id="administratorWidok" rendered="#{request.isUserInRole('Administrator')}">
+                                                <li><a> <span class="glyphicon glyphicon-user"></span>${applicationBean.myLogin}</a></li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['strona.main.template.label.admin']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="listaRejestracjiKonta.xhtml">#{msg['strona.main.template.label.admin.lista.nowych.kont']}</a></li>
+                                                        <li><a href="listaKontaAktywnych.xhtml">#{msg['strona.main.template.label.admin.lista.kont']}</a></li>
+                                                        <li><a href="edytujMojeKonto.xhtml">Edytuj konto</a></li>
+                                                        <li><a href="zmienMojeHaslo.xhtml">Zmienń moje hasło</a></li>
+                                                    </ul>
+                                                    <li><a href="wyloguj.xhtml">#{msg['strona.main.template.label.wyloguj']}</a></li>
+                                                </li>
+                                            </f:subview>
+
+                                            <f:subview id="nieuwierzytelnionyWidok" rendered="#{empty request.remoteUser}">
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lista dostępnych koncertów
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="listaKoncertow_stronaGlowna.xhtml">#{msg['strona.main.template.label.pracownik.lista.dostepnych.koncertow']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <ul class="nav navbar-nav navbar-right">
+                                                    <li><a> <span class="glyphicon glyphicon-user"></span>${applicationBean.myLogin}</a></li>
+                                                    <li><a href="rejestracjaKonta.xhtml"><span class="glyphicon glyphicon-user"></span> #{msg['strona.main.template.label.rejestracja.konta']}</a></li>
+                                                    <li><a href="logowanie.xhtml"><span class="glyphicon glyphicon-log-in"></span> #{msg['strona.main.template.label.zaloguj']}</a></li>
+                                                    <li><a href="resetHasla.xhtml"><span class="glyphicon glyphicon-apple"></span> #{msg['strona.main.template.label.przypomnij.haslo']}</a></li>
+                                                </ul>
+                                            </f:subview>
+                                        </ul>
+
+                                        <h:panelGroup layout="block">       
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h:panelGroup layout="block"
+                                                                  rendered="test">
+                                                        <div class="alert alert-danger">
+                                                            <p class="text-center">
+                                                                #{msg['konto.utworz.blad']}</p>
+                                                        </div>
+                                                    </h:panelGroup>
+                                                </div>
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </nav> 
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 content-area">
+                    <div class="content">
+                        <ui:insert name="content">
+                        </ui:insert>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 footer">
+                    <ui:insert name="footer">
+                        #{msg['strona.main.template.footer']}
+                    </ui:insert>
+                </div>              
+            </div>
+        </div>
+    </h:body>
+</html>

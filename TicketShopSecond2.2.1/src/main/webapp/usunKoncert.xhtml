@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:form>
+                    <h:messages></h:messages>
+                    #{msg['strona.usuniecie.koncert.potwierdzenie']} <br /><br />
+                    #{msg['strona.rejestracja.koncert.form.label.wykonawca']}: <h:outputText id="wykonawca" value="${usunKoncertPageBean.koncertDTO.wykonawca}" /><br />
+                    #{msg['strona.rejestracja.koncert.form.label.data']}: <h:outputText id="data" value="${usunKoncertPageBean.koncertDTO.data}"  /><br />
+                    #{msg['strona.rejestracja.koncert.form.label.miejsce']}: <h:outputText id="miejsce" value="${usunKoncertPageBean.koncertDTO.miejsce}"  /><br />
+                    #{msg['strona.rejestracja.koncert.form.label.pula.biletow']}: <h:outputText id="pulaBiletow" value="${usunKoncertPageBean.koncertDTO.pulaBiletow}"  /><br />
+                    #{msg['strona.rejestracja.koncert.form.label.cena']}: <h:outputText id="cena" value="${usunKoncertPageBean.koncertDTO.cena}"  /><br />
+                    <h:commandButton styleClass="button" action="#{usunKoncertPageBean.usunKoncertAction()}" value="#{msg['strona.lista.koncertow.akcja.usun']}"  />
+                    <h:commandButton value="#{msg['strona.akcja.powrot']}"  action="listaKoncertow" immediate="true"/>
+                </h:form>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

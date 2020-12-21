@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:form id="listaKoncertowKlient" styleClass="center_content">
+                    <h1> ${msg['strona.lista.koncertow.tytul']} </h1>
+                    <h:dataTable var="row" value="${listaKoncertowPageBean.dataModelKoncert}">
+                        <h:column id="wykonawca">
+                            <f:facet name="header">${msg['strona.lista.koncertow.wykonaca']}</f:facet>
+                            <h:outputText value="#{row.wykonawca}" />
+                        </h:column>
+                        <h:column id="data">
+                            <f:facet name="header">${msg['strona.lista.koncertow.data']}</f:facet>
+                            <h:outputText value="#{row.data}" />
+                        </h:column>
+                        <h:column id="miejsce">
+                            <f:facet name="header">${msg['strona.lista.koncertow.miejsce']}</f:facet>
+                            <h:outputText value="#{row.miejsce}" />
+                        </h:column>
+                        <h:column id="cena">
+                            <f:facet name="header">Cena</f:facet>
+                            <h:outputText value="#{row.cena}" /> 
+                        </h:column>
+                        <h:column id="actions">
+                            <f:facet name="header">${msg['strona.lista.label.akcje']}</f:facet>
+                            <h:commandButton value="${msg['strona.lista.koncertow.akcja.kup.bilet']}" action="${listaKoncertowPageBean.kupBiletAction(row)}" disabled="#{row.wyprzedane}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:commandLink value="${msg['strona.akcja.powrot.do.glownej']}"  action="main"/>  
+                    <h5> ${msg['strona.lista.koncertow.tytul2']} </h5>
+                </h:form>
+                <h:messages> </h:messages>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

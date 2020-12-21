@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resourceBundle.path</param-name>
+        <param-value>i18n.messages</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            10
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
+    </welcome-file-list>
+    <!--    <mime-mapping>
+    <extension>woff2</extension>
+    <mime-type>application/font-woff2</mime-type>
+</mime-mapping>
+    -->
+    <security-constraint>
+        <display-name>Administrator</display-name>
+        <web-resource-collection>  <!--definiuje zbiór zasobów objętych ograniczeniem -->
+            <web-resource-name>Administrator</web-resource-name>  <!--określa nazwę zbioru dla zasobu -->
+            <description/>
+            <url-pattern>/faces/listaRejestracjiKonta.xhtml</url-pattern>
+            <url-pattern>/faces/listaKontaAktywnych.xhtml</url-pattern> <!-- określa wzorzec URL zasobów należących do zbioru. * oznacza dowolny ciąg znaków -->
+            <url-pattern>/faces/zmienHaslo.xhtml</url-pattern>
+            <url-pattern>/faces/edytujMojeKonto.xhtml</url-pattern>
+            <url-pattern>/faces/zmienMojeHaslo.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>Administrator</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Pracownik</display-name>
+        <web-resource-collection>
+            <web-resource-name>Pracownik</web-resource-name>
+            <description/>
+            <url-pattern>/faces/rejestracjaKoncertu.xhtml</url-pattern>
+            <url-pattern>/faces/edytujMojeKonto.xhtml</url-pattern>
+            <url-pattern>/faces/edytujKoncert.xhtml</url-pattern>
+            <url-pattern>/faces/zmienMojeHaslo.xhtml</url-pattern>
+            <url-pattern>/faces/rejestracjaKoncertu.xhtml</url-pattern>
+            <url-pattern>/faces/usunKoncert.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>Pracownik</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Klient</display-name>
+        <web-resource-collection>
+            <web-resource-name>Klient</web-resource-name>
+            <description/>
+            <url-pattern>/faces/kupBilet.xhtml</url-pattern>
+            <url-pattern>/faces/listaKupionychBiletowKlient.xhtml</url-pattern>
+            <url-pattern>/faces/edytujMojeKonto.xhtml</url-pattern>
+            <url-pattern>/faces/kupBilet.xhtml</url-pattern>
+            <url-pattern>/faces/zwrocBilet.xhtml</url-pattern>
+            <url-pattern>/faces/zmienMojeHaslo.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>Klient</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <login-config>
+        <auth-method>FORM</auth-method> <!--metoda uwierzytelnienia -->
+        <realm-name>TicketShopJDBCRealm</realm-name> <!--źródło danych uwierzytelnienia, z którego ma korzystać mechanizm uwierzytelnienia -->
+        <form-login-config>
+            <form-login-page>/faces/logowanie.xhtml</form-login-page>
+            <form-error-page>/faces/error.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <security-role>
+        <description/>
+        <role-name>Administrator</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Pracownik</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Klient</role-name>
+    </security-role>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/faces/error403.xhtml</location>   
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/faces/error404.xhtml</location>   
+    </error-page>
+    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/faces/error/error500.xhtml</location>   
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.RuntimeException</exception-type>
+        <location>/faces/error/error.xhtml</location>
+    </error-page>
+    <context-param>
+        <!--            Ustawienie tego parametru na wartość true powoduje, że JSF będzie traktować puste pola formularza
+        jako wartości null, nie zaś puste napisy ("")-->
+        <param-name>
+            javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
+        </param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+</web-app>

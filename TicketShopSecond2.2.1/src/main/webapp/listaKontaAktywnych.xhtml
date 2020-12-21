@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:form>
+                    <h1> ${msg['strona.lista.kont.tytul']} </h1>
+                    <h:dataTable var="row" value="${listaKontPoAutoryzacji.dataModelKonto}">
+                        <h:column id="login">
+                            <f:facet name="header">${msg['strona.rejestracja.konto.formularz.label.login']}</f:facet>
+                            <h:outputText value="#{row.login}" />
+                        </h:column>
+                        <h:column id="imie">
+                            <f:facet name="header">${msg['strona.rejestracja.konto.formularz.label.imię']}</f:facet>
+                            <h:outputText value="#{row.imie}" />
+                        </h:column>
+                        <h:column id="nazwisko">
+                            <f:facet name="header">${msg['strona.rejestracja.konto.formularz.label.nazwisko']}</f:facet>
+                            <h:outputText value="#{row.nazwisko}" />
+                        </h:column>
+                        <h:column id="email">
+                            <f:facet name="header">${msg['strona.rejestracja.konto.form.label.email']}</f:facet>
+                            <h:outputText value="#{row.email}" />
+                        </h:column>
+                        <h:column id="actions">
+                            <f:facet name="header">${msg['strona.lista.label.akcje']}</f:facet>
+                            <h:selectOneMenu value="#{row.poziomDostepu}" >
+                                <f:selectItems  value="${listaKontPageBean.listaPoziomowDostepu}" var="poziomDostepu" itemValue="#{poziomDostepu}" itemLabel="#{poziomDostepu.accessLevelI18NValue}" />
+                            </h:selectOneMenu>
+                            <h:commandButton value= "${msg['strona.lista.kont.zmiana.poziomu.dostepu']}" action="${listaKontPoAutoryzacji.zmienPoziomDostepuAction(row)}"/>
+                            <h:commandButton value= "${msg['strona.lista.kont.edycja']}"  action="${listaKontPoAutoryzacji.edytujKontoAction(row)}"/>
+                            <h:commandButton value= "${msg['strona.lista.kont.zmiana.hasla']}"  action="${listaKontPoAutoryzacji.zmienHasloAction(row)}"/>
+                            <h:commandButton value= "${msg['strona.lista.kont.aktywacja']}" action="#{listaKontPoAutoryzacji.aktywujKontoAction(row)}" disabled="#{row.aktywne}" />
+                            <h:commandButton value= "${msg['strona.lista.kont.dezaktywacja']}" action="#{listaKontPoAutoryzacji.dezaktywujKontoAction(row)}" disabled="#{not row.aktywne}" />
+                        </h:column>
+                    </h:dataTable>
+                    <h:outputLink value="stronaGlowna.xhtml"> ${msg['strona.akcja.powrot.do.glownej']} </h:outputLink>   
+                </h:form>
+                <h:messages> </h:messages>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>
+

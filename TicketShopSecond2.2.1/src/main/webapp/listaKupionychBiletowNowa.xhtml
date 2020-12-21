@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="title" >"LISTA KUPIONYCH BILETÓW"</ui:define>
+            <ui:define name="content" >
+                <h:form>
+                    <h:panelGrid columns="4" styleClass="table" >
+                        #{msg['strona.lista.kupionych.biletow']}
+                        <h:selectOneMenu id="wykonawca" value="#{listaKupionychBiletowNowa.biletDTO.wykonawca}" required="true" >
+                            <f:selectItem itemLabel=#{msg['strona.lista.kupionych.biletow.wykonawca']} />
+                            <f:selectItems value="${listaKupionychBiletowNowa.listaKoncertow}" var="listaKoncertow" itemValue="#{wykonawca}" itemLabel="#{listaKoncertow.displayLabel}"  /> 
+                        </h:selectOneMenu>
+                        <h:commandButton styleClass="button" value="#{msg['strona.akcja.pokaz']}" action="${listaKupionychBiletowNowa.pokazListeAction()}" />
+                    </h:panelGrid>
+                    <h:messages styleClass="messages"/>
+                    <h:dataTable var="row" value="${listaKupionychBiletowNowa.dataModelBilet}" border="2" width="100%"  styleClass="table"> 
+                        <h:column id="lp">
+                            <f:facet name="header">lp</f:facet> 
+                            <h:outputText value="#{row.lp}" /> 
+                        </h:column>
+                        <h:column id="wykonawca">
+                            <f:facet name="header">${msg['strona.lista.koncertow.wykonaca']}</f:facet> 
+                            <h:outputText value="#{row.koncert.wykonawca}" /> 
+                        </h:column>
+                        <h:column id="data">
+                            <f:facet name="header">${msg['strona.lista.koncertow.data']}</f:facet> 
+                            <h:outputText value="#{row.koncert.data}" /> 
+                        </h:column>
+                        <h:column id="miejsce">
+                            <f:facet name="header">${msg['strona.lista.koncertow.miejsce']}</f:facet> 
+                            <h:outputText value="#{row.koncert.miejsce}" />
+                        </h:column>
+                        <h:column id="klientID">
+                            <f:facet name="header">${msg['strona.lista.koncertow.login']}</f:facet> 
+                            <h:outputText value="#{row.klient.login}" />
+                        </h:column> 
+                    </h:dataTable>
+                    <h:commandLink value="${msg['strona.akcja.powrot.do.glownej']}"  action="main"/>  
+                </h:form>
+                <h:messages></h:messages>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

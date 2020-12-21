@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:messages></h:messages>
+                <form method="post" action="j_security_check"> 
+                    <h1> ${msg['strona.zaloguj.podaj.login']}  </h1>
+                    <p>
+                        #{msg['strona.rejestracja.konto.label.login']}*:
+                        <input type="text" name= "j_username" />
+                        <h1> ${msg['strona.zaloguj.podaj.haslo']} </h1>
+                        #{msg['strona.rejestracja.konto.label.haslo']}*
+                        <input type="password" name= "j_password" />
+                    </p>
+                    <p>
+                        <input type="submit" value="${msg['strona.logowanie']}" action= "main" immediate="true"/>
+                    </p>
+                </form>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

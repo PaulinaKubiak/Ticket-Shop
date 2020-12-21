@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content"> 
+                <h:messages></h:messages>
+                <h:form id="rejestracjaKonta" styleClass="center_content">
+                    <h1> ${msg['strona.rejestracja.konta.formularz.akcja.rejestruj']} </h1>
+                    <h:panelGrid columns="2" styleClass="table">        
+                        #{msg['strona.rejestracja.konto.label.login']}*:
+                        <h:inputText id="login" value="${rejestracjaKontaPageBean.kontoDTO.login}" required="true" size="50" maxlength="50" 
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.login']}"> 
+                        </h:inputText>
+                        #{msg['strona.rejestracja.konto.label.haslo']}*:
+                        <h:inputSecret id="haslo" value="${rejestracjaKontaPageBean.kontoDTO.haslo}" required="true" size="50" maxlength="64"
+                                       validatorMessage="#{msg['strona.rejestracja.konto.formularz.walidacja.haslo']}"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.haslo']}">
+                            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%]).{6,20})" /> 
+                        </h:inputSecret>
+                        #{msg['strona.rejestracja.konto.label.powtorzhaslo']}*:
+                        <h:inputSecret id="hasloRepeat" value="${rejestracjaKontaPageBean.potworzHaslo}" required="true" size="50" maxlength="64"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.powtorz.haslo']}"> 
+                        </h:inputSecret> 
+                        #{msg['strona.rejestracja.konto.form.label.imie']}*:
+                        <h:inputText id="imie" value="${rejestracjaKontaPageBean.kontoDTO.imie}" required="true" size="50" maxlength="50"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.imie']}"/>  
+                        #{msg['strona.rejestracja.konto.form.label.nazwisko']}*:
+                        <h:inputText id="nazwisko" value="${rejestracjaKontaPageBean.kontoDTO.nazwisko}" required="true" size="50" maxlength="80"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.nazwisko']}"/>  
+                        #{msg['strona.rejestracja.konto.form.label.email']}*:
+                        <h:inputText id="email" value="${rejestracjaKontaPageBean.kontoDTO.email}" required="true" size="50" maxlength="150"
+                                     validatorMessage="#{msg['strona.rejestracja.konto.formularz.walidacja.email']}"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.email']}">
+                            <f:validateRegex pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" /> 
+                        </h:inputText>
+                        #{msg['strona.rejestracja.kontolabel.pytanie']}*:
+                        <h:inputText id="pytanie" value="${rejestracjaKontaPageBean.kontoDTO.pytanie}"  required="true" size="50" maxlength="20"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.pytanie']}"/> 
+                        #{msg['strona.rejestracja.konto.label.odpowiedz']}*:
+                        <h:inputText id="odpowiedz" value="${rejestracjaKontaPageBean.kontoDTO.odpowiedz}"  required="true" size="50" maxlength="150"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.odpowiedz']}"/>
+                    </h:panelGrid>
+                    <h:commandButton value="#{msg['strona.rejestracja.konta.formularz.akcja.rejestruj']}" action="${rejestracjaKontaPageBean.rejestracjaKontaAction()}" />
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}" action="main" immediate="true"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

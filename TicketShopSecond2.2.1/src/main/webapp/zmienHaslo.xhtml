@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content"> 
+                <h:form id="zmienHaslo" styleClass="center_content">
+                    #{msg['strona.zmien.haslo.login']}:<h:outputText id="login"  value="${zmianaHaslaPageBean.kontoDTO.login}" /><br />
+                    #{msg['strona.zmien.haslo.nowe']}*:<h:inputSecret id="nowe_haslo" required="true" value="#{zmianaHaslaPageBean.kontoDTO.haslo}" 
+                                     validatorMessage="#{msg['strona.rejestracja.konto.formularz.walidacja.haslo']}"
+                                     requiredMessage="#{msg['strona.rejestracja.konto.formularz.haslo']}">
+                        <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%]).{6,20})" /> </h:inputSecret> <br />
+                    #{msg['strona.zmien.haslo.powtorz.nowe']}*:<h:inputSecret id="powtorz_nowe_haslo" required="true" value="#{zmianaHaslaPageBean.powtorzNoweHaslo}" /><br />
+                    <h:commandButton value="#{msg['strona.zmien.haslo.form.akcja.zapisz']}" action="#{zmianaHaslaPageBean.zapiszZmianeHaslaActionn()}" />
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}" action="listaKontAktywnych" immediate="true"/>
+                </h:form>
+                <h:messages></h:messages>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

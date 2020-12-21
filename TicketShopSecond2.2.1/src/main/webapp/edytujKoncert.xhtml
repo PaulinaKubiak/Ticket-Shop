@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" >
+                <h:messages></h:messages>
+                <h:form id="edytujKoncert" styleClass="center_content">
+                    <h:panelGrid columns="2">    
+                        #{msg['strona.rejestracja.koncert.form.label.wykonawca']}: <h:outputText id="wykonawca" value="${edytujKoncertPageBean.koncertDTO.wykonawca}"  /> <br />
+                        #{msg['strona.rejestracja.koncert.form.label.data']}: <h:inputText id="data" value="${edytujKoncertPageBean.koncertDTO.data}" size="50">
+                            <f:convertDateTime type="date" pattern="yyyy-M-d HH:mm"/> </h:inputText>
+                        #{msg['strona.rejestracja.koncert.form.label.miejsce']}:<h:inputText id="miejsce" value="#{edytujKoncertPageBean.koncertDTO.miejsce}" size="50"/><br />
+                        #{msg['strona.rejestracja.koncert.form.label.pula.biletow']}:<h:inputText id="pulaBiletow" value="#{edytujKoncertPageBean.koncertDTO.pulaBiletow}" size="50" /><br />
+                    </h:panelGrid>
+                    <h:commandButton value="#{msg['strona.form.akcja.zapisz']}" action="#{edytujKoncertPageBean.zapiszEdycjeKoncertuAction()}" />
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}" action="listaKoncertow" immediate="true"/>
+                </h:form>
+            </ui:define>           
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <locale-config>
+            <default-locale>pl</default-locale>
+            <supported-locale>pl</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>i18n.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <message-bundle>
+            i18n.jsf_messages
+        </message-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>main</from-outcome>
+            <to-view-id>/faces/stronaGlowna.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listaKontAktywnych</from-outcome>
+            <to-view-id>/faces/listaKontaAktywnych.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listaRejestracjiKonta</from-outcome>
+            <to-view-id>/faces/listaRejestracjiKonta.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edytujKonto</from-outcome>
+            <to-view-id>/faces/edytujKonto.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>zmianaHasla</from-outcome>
+            <to-view-id>/faces/zmienHaslo.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cancelAction</from-outcome>
+            <to-view-id>/faces/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listaKoncertow</from-outcome>
+            <to-view-id>/faces/listaKoncertow.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edytujKoncert</from-outcome>
+            <to-view-id>/faces/edytujKoncert.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>kupBilet</from-outcome>
+            <to-view-id>/faces/kupBilet.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usunKonto</from-outcome>
+            <to-view-id>/faces/usunKonto.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usunKoncert</from-outcome>
+            <to-view-id>/faces/usunKoncert.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listaBiletowKlient</from-outcome>
+            <to-view-id>/faces/listaKupionychBiletowKlient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+                <navigation-case>
+            <from-outcome>resetHasla2</from-outcome>
+            <to-view-id>/faces/resetHasla2.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

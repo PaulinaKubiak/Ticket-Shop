@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content"> 
+                <h:messages></h:messages>
+                <h:form id="ZmienMojeHasloForm" styleClass="content">
+                    <h:messages></h:messages>
+                    <h:panelGrid columns="2" styleClass="table">
+
+                        #{msg['strona.rejestracja.konto.formularz.label.login']}*: 
+                        <h:inputText disabled="true" id="login" value="${zmienMojeHasloPageBean.myLogin}" size="80"/> <br />
+
+                        #{msg['strona.rejestracja.konto.formularz.label.stare.haslo']}*:
+                        <h:inputSecret id="stareHaslo"  required="true" maxlength="20" size="80" value="${zmienMojeHasloPageBean.kontoDTO.stareHaslo}"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.haslo']}"/>   <br />
+
+                        #{msg['strona.rejestracja.konto.formularz.label.nowe.haslo']}*: 
+                        <h:inputSecret id="noweHaslo"  required="true" maxlength="20" size="80" value="${zmienMojeHasloPageBean.kontoDTO.haslo}"
+                                       validatorMessage="#{msg['strona.rejestracja.konto.formularz.walidacja.haslo']}"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.haslo']}">
+                            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%]).{6,20})" /> </h:inputSecret> <br />
+
+                        #{msg['strona.rejestracja.konto.formularz.label.nowe.haslo.powtorz']}*:
+                        <h:inputSecret id="powtorzNoweHaslo"  required="true" maxlength="20" size="80" value="${zmienMojeHasloPageBean.powtorzNoweHaslo}"
+                                       requiredMessage="#{msg['strona.rejestracja.konto.formularz.haslo']}"/> <br />
+                    </h:panelGrid>
+                    <h:commandButton value="#{msg['strona.zmien.haslo.form.akcja.zapisz']}" action="${zmienMojeHasloPageBean.zapiszZmianeMojegoHaslaAction()}"/>
+                    <h:commandButton value="#{msg['strona.form.akcja.anuluj']}"  action="main" immediate="true"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+
